@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Exercice - 1</title>
+</head>
+<body>
+  <select id="userChoice">
+    <option value="0" >Pierre</option>
+    <option value="1" >Feuille</option>
+    <option value="2" >Ciseaux</option>
+  </select>
+  <button type="button" name="button" id="start">Shifumi !</button>
+</body>
+<script src="assets/js/jquery-3.2.1.js"></script>
+<script>
+$(function(){
+  // Déclarations de variables
+  var computerChoiceList = ["Pierre", 'Feuille', 'Ciseaux'];
+  var counter = 0;
+  var victory = 0;
+  var defeat = 0;
+  var draw = 0;
+  // Détecte si le bouton ayant l'id start est a été cliqué
+  $('#start').click(function(){
+    var computerChoice = Math.floor(Math.random() * 3);
+    var userChoice = $('#userChoice').val();
+    counter++;
+    if (userChoice == 0 && computerChoice == 2) {
+      victory++;
+      console.log('Ordinateur a choisi ' + computerChoiceList[computerChoice]);
+      console.log('Utilisateur a gagné');
+    } else if (userChoice == 2 && computerChoice == 0) {
+      defeat++;
+      console.log('Ordinateur a choisi ' + computerChoiceList[computerChoice]);
+      console.log('Ordinateur a gagné');
+    } else if (userChoice > computerChoice) {
+      victory++;
+      console.log('Ordinateur a choisi ' + computerChoiceList[computerChoice]);
+      console.log('utilisateur a gagné');
+    } else if (userChoice < computerChoice) {
+      defeat++;
+      console.log('Ordinateur a choisi ' + computerChoiceList[computerChoice]);
+      console.log('Ordinateur a gagné');
+    } else {
+      draw++;
+      console.log('Ordinateur a choisi ' + computerChoiceList[computerChoice]);
+      console.log('égalité');
+    }
+    var ratio = Math.trunc((victory / counter) * 100);
+    console.log('Vous avez gagné ' + ratio + ' % des parties');
+  });
+});
+</script>
+</html>
